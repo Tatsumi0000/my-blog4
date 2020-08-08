@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  nuxt:
+    build:
+      # context配下のDockefileを参照する
+      context: "./nuxt"
+      dockerfile: "Dockerfile"
+    container_name: nuxt
+    ports:
+      # 左がホスト，右がコンテナ
+      - 3000:3000
+    environment:
+      # INADDR_ANYというもの．ホストマシンの外部の接続にアクセス可能なホストアドレスを自動で提供する
+      HOST: 0.0.0.0
+    # コンテナを立ち上げ続ける
+    tty: true
+    volumes:
+      - ./src/:/app/my-blog
+    # 作業ディレクトリ
+    working_dir: /app/my-blog
+    # 接続するまで
+    restart: always
+    # 実行するコマンド
+    command: npm run dev
