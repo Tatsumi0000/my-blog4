@@ -30,9 +30,9 @@
 
 export default {
   async asyncData({ $axios, store }) {
-    const BASE_URL = `${$axios.defaults.baseURL}?page=${store.state.currentPageNumber}&per_page=${store.state.pagePer}` // $axios.defaults.baseURLでnuxt.config.jsのaxios{}のbaseURLを参照
+    const REQUEST_URL = `${$axios.defaults.baseURL}?page=${store.state.currentPageNumber}&per_page=${store.state.pagePer}` // $axios.defaults.baseURLでnuxt.config.jsのaxios{}のbaseURLを参照
     try {
-      const responce = await $axios.get(BASE_URL) // $getすると$axios.dataが入ってくる．getだと普通のaxiosのgetと同じ
+      const responce = await $axios.get(REQUEST_URL) // $getすると$axios.dataが入ってくる．getだと普通のaxiosのgetと同じ
       store.commit('setTotalPostsItems', responce.headers['x-wp-total']) // 総記事数をStoreにセット
       store.commit(
         'setTotalPaginationItems',
