@@ -19,16 +19,31 @@
           >GitHub
         </a>
       </div>
-      {{ posts }}
+      <!-- {{ fetchs() }} -->
       <p>AAAAA</p>
     </div>
   </div>
 </template>
 
 <script>
-// import axios from '@nuxtjs/axios'
+// import { mapMutations } from 'vuex'
 
 export default {
+  async asyncData({ $axios, store }) {
+    const BASE_URL = `${$axios.defaults.baseURL}?page=${store.state.currentPageNumber}&per_page=${store.state.pagePer}` // $axios.defaults.baseURLでnuxt.config.jsのaxios{}のbaseURLを参照
+    try {
+      const responce = await $axios.get(BASE_URL) // $getすると$axios.dataが入ってくる．getだと普通のaxiosのgetと同じ
+      store.commit('setTotalPostsItems', responce.headers['x-wp-total']) // 総記事数をStoreにセット
+      store.commit(
+        'setTotalPaginationItems',
+        responce.headers['x-wp-totalpages']
+      ) // 総ページネーション数をStoreにセット
+      store.commit('setPosts', responce.data) // 記事のデータをセット
+      return { posts: responce.data }
+    } catch (err) {
+      console.log(err)
+    }
+  },
   data() {
     return {
       posts: [],
@@ -36,26 +51,9 @@ export default {
   },
   methods: {
     fetchs: () => {
+      // console.log('AAAAA', this.$store.state.posts)
       return 'a'
     },
-  },
-  // mounted() {
-  //   console.log('mounted')
-  //   axios
-  //     .get('https://soleil-luminas.com/wp-json/wp/v2/posts')
-  //     .then((responce) => console.log(`DEBUG: ${responce.data}`))
-  //     .catch((error) => console.log(error))
-  // },
-  async asyncData({ $axios }) {
-    return await $axios
-      .$get('https://soleil-luminas.com/wp-json/wp/v2/posts')
-      .then((result) => {
-        console.log(result)
-        return { posts: result.data }
-      })
-      .catch((err) => {
-        console.log(err)
-      })
   },
 }
 </script>

@@ -63,7 +63,9 @@ export default {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: 'https://soleil-luminas.com/wp-json/wp/v2/posts',
+  },
   /*
    ** Content module configuration
    ** See https://content.nuxtjs.org/configuration
