@@ -3,10 +3,10 @@
     <div class="background-cover w-full m-0 p-0 bg-cover bg-bottom">
       <div class="max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
         <!--Title-->
-        <p class="text-white font-extrabold text-3xl md:text-5xl">
+        <p class="title text-white font-extrabold text-3xl md:text-5xl">
           私的歌詞倉庫
         </p>
-        <p class="text-xl md:text-2xl text-gray-500">
+        <p class="title text-xl md:text-2xl text-gray-500">
           プログラミングや日常の出来事について記すブログです
         </p>
       </div>
@@ -44,14 +44,9 @@ export default {
 }
 </script>
 
-<style>
-p {
-  font-family: 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro',
-    游ゴシック体, 'Yu Gothic', YuGothic, メイリオ, Meiryo, sans-serif;
-}
-
+<style scoped>
 .background-cover {
-  background-image: url('~@/assets/images/cover.jpg');
+  background-image: url('~@/assets/images/cover02.jpg');
   height: 60vh;
   max-height: 460px;
 }
@@ -70,13 +65,8 @@ p {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  font-family: 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro',
+    游ゴシック体, 'Yu Gothic', YuGothic, メイリオ, Meiryo, sans-serif;
 }
 
 .subtitle {
