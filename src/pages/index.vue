@@ -15,8 +15,6 @@
 </template>
 
 <script>
-// import { mapMutations } from 'vuex'
-
 export default {
   async asyncData({ $axios, store }) {
     const REQUEST_URL = `${$axios.defaults.baseURL}?page=${store.state.currentPageNumber}&per_page=${store.state.pagePer}` // $axios.defaults.baseURLでnuxt.config.jsのaxios{}のbaseURLを参照
