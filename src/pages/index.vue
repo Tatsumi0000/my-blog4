@@ -1,26 +1,15 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">my-blog</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-          >Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-          >GitHub
-        </a>
+  <div>
+    <div class="background-cover w-full m-0 p-0 bg-cover bg-bottom">
+      <div class="max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
+        <!--Title-->
+        <p class="text-white font-extrabold text-3xl md:text-5xl">
+          私的歌詞倉庫
+        </p>
+        <p class="text-xl md:text-2xl text-gray-500">
+          プログラミングや日常の出来事について記すブログです
+        </p>
       </div>
-      <!-- {{ fetchs() }} -->
-      <p>AAAAA</p>
     </div>
   </div>
 </template>
@@ -51,7 +40,6 @@ export default {
   },
   methods: {
     fetchs: () => {
-      // console.log('AAAAA', this.$store.state.posts)
       return 'a'
     },
   },
@@ -59,6 +47,16 @@ export default {
 </script>
 
 <style>
+p {
+  font-family: 'ヒラギノ角ゴシック Pro', 'Hiragino Kaku Gothic Pro',
+    游ゴシック体, 'Yu Gothic', YuGothic, メイリオ, Meiryo, sans-serif;
+}
+
+.background-cover {
+  background-image: url('~@/assets/images/cover.jpg');
+  height: 60vh;
+  max-height: 460px;
+}
 /* Sample `apply` at-rules with Tailwind CSS
 .container {
 @apply min-h-screen flex justify-center items-center text-center mx-auto;
