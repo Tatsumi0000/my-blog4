@@ -1,21 +1,28 @@
 <template>
   <div>
-    <div class="background-cover w-full m-0 p-0 bg-cover bg-bottom">
-      <div class="max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
-        <!--Title-->
-        <p class="title text-white font-extrabold text-3xl md:text-5xl">
-          私的歌詞倉庫
-        </p>
-        <p class="title text-xl md:text-2xl text-gray-500">
-          プログラミングや日常の出来事について記すブログです
-        </p>
+    <div>
+      <div class="background-cover w-full m-0 p-0 bg-cover bg-bottom">
+        <div class="max-w-4xl mx-auto pt-16 md:pt-32 text-center break-normal">
+          <p class="title text-white font-extrabold text-3xl md:text-5xl">
+            私的歌詞倉庫
+          </p>
+          <p class="title text-xl md:text-2xl text-gray-500">
+            プログラミングや日常の出来事について記すブログです
+          </p>
+        </div>
       </div>
     </div>
+    <!-- <TopPostItem /> -->
+    <PostItem />
   </div>
 </template>
 
 <script>
 export default {
+  components: {
+    // TopPostItem: () => import('~/components/TopPostItem.vue'),
+    PostItem: () => import('~/components/PostItem.vue'),
+  },
   async asyncData({ $axios, store }) {
     const REQUEST_URL = `${$axios.defaults.baseURL}?page=${store.state.currentPageNumber}&per_page=${store.state.pagePer}` // $axios.defaults.baseURLでnuxt.config.jsのaxios{}のbaseURLを参照
     try {
