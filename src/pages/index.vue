@@ -13,7 +13,7 @@
       </div>
     </div>
     <!-- <TopPostItem /> -->
-    <PostItem />
+    <PostItem :posts="posts" />
   </div>
 </template>
 
@@ -33,7 +33,19 @@ export default {
         responce.headers['x-wp-totalpages']
       ) // 総ページネーション数をStoreにセット
       store.commit('setPosts', responce.data) // 記事のデータをセット
-      return { posts: responce.data }
+      // PostItemに必要なデータのみを加工する．
+      const postsData = responce.data.map((postData) => ({
+        id: postData.id,
+        createdDate: postData.date,
+        title: postData.title.rendered,
+        content: postData.content.rendered,
+        thumbnailUrl:
+          postData.jetpack_featured_media_url === ''
+            ? 'a' // 空文字だったらNo Imageみたいなのをいれる
+            : postData.jetpack_featured_media_url, // きちんとサムネがあればそれを入れる
+      }))
+      return { posts: postsData }
+      // エラーの場合
     } catch (err) {
       console.log(err)
     }
